@@ -22,6 +22,11 @@ module.exports = (client, interaction) => {
 		}
 	}
 	if (interaction.isButton()) {
+		if (
+			interaction.customId.includes("next") ||
+			interaction.customId.includes("prev")
+		)
+			return;
 		if (interaction.customId.startsWith("abraçar"))
 			return require("../button/hug")(client, interaction);
 		if (interaction.customId.startsWith("beijar"))
