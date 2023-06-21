@@ -20,21 +20,22 @@ module.exports = async (client, message) => {
 		function extractInfo(message) {
 			const inviteLinkRegex =
 				/(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>.+)/gm;
-			const representativeRegex = /<@!\d+>/g;
+			const representativeRegex = /<@\d+>/g;
 			const inviteLinkMatch = message.match(inviteLinkRegex);
 			const representativeMatch = message.match(representativeRegex);
 			const inviteLink = inviteLinkMatch ? inviteLinkMatch[0] : null;
-			const inviteCode = inviteLinkMatch ? inviteLinkMatch[1] : null;
 			const representative = representativeMatch
 				? representativeMatch[0]
-				: null;
-			return { inviteLink, inviteCode, representative };
+				: `<@${message.author.id}>`;
+			return { inviteLink, representative };
 		}
 		const info = extractInfo(message.content);
 		let name = "Desconhecido";
-		await client.fetchInvite(info.inviteCode).then((invite) => {
-			name = invite.name;
-		});
+		await client
+			.fetchInvite(info.inviteLink.replace("https://discord.gg/", "").replace("https://discord.com/invite/", ""))
+			.then((invite) => {
+				name = invite.guild.name;
+			});
 		message.reply({
 			components: [
 				new discord.ActionRowBuilder().setComponents(
@@ -64,7 +65,9 @@ module.exports = async (client, message) => {
 					},
 					author: {
 						name: message.author.username,
-						iconURL: message.author.iconURL({ format: "png" }),
+						iconURL: message.author.displayAvatarURL({
+							format: "png",
+						}),
 					},
 					color: "5814783",
 					image: {
