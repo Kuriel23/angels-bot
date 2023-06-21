@@ -19,7 +19,7 @@ module.exports = async (client, message) => {
 		}
 		function extractInfo(message) {
 			const inviteLinkRegex =
-				/https?:\/\/discord(?:app)?\.com\/invite\/([a-zA-Z0-9]+)/;
+				/(https:\/\/)?(www\.)?(((discord(app)?)?\.com\/invite)|((discord(app)?)?\.gg))\/(?<invite>.+)/gm;
 			const representativeRegex = /<@!\d+>/g;
 			const inviteLinkMatch = message.match(inviteLinkRegex);
 			const representativeMatch = message.match(representativeRegex);
