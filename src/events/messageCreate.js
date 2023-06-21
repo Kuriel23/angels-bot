@@ -4,7 +4,7 @@ module.exports = async (client, message) => {
 	if (message.guild === null) return;
 
 	if (message.author.bot) return 0;
-	if (message.channel.id === "") {
+	if (message.channel.id === "1113960665632231534") {
 		const doc = await client.db.PartnersStaff.findOne({
 			_id: message.author.id,
 		});
