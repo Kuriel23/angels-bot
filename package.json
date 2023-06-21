@@ -13,6 +13,7 @@
     "fs": "^0.0.1-security",
     "moment": "^2.29.4",
     "mongoose": "^7.2.2",
+    "mongoose-paginate-v2": "^1.7.1",
     "ms-pt-br": "^2.1.4",
     "node-schedule": "^2.1.1",
     "parse-ms-2": "^1.0.0",
