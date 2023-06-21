@@ -30,7 +30,7 @@ module.exports = async (client, message) => {
 				: null;
 			return { inviteLink, inviteCode, representative };
 		}
-		const info = extractInfo(message);
+		const info = extractInfo(message.content);
 		let name = "Desconhecido";
 		await client.fetchInvite(info.inviteCode).then((invite) => {
 			name = invite.name;
