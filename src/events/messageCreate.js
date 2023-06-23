@@ -57,7 +57,7 @@ module.exports = async (client, message) => {
 							">",
 							""
 						)}\`) do servidor ${name} e agora possui ${
-						doc.partners
+						doc.partners || 1
 					} parceria feitas.`,
 					footer: {
 						text: message.guild.name,
