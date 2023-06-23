@@ -7,8 +7,7 @@ module.exports = {
 			"pt-BR": "classificação",
 			"en-US": "rank",
 		})
-		.setDescription("Veja classificação das parcerias!")
-		.setDefaultMemberPermissions(discord.PermissionFlagsBits.Administrator),
+		.setDescription("Veja classificação das parcerias!"),
 	async execute(interaction, client) {
 		await interaction.reply({ content: "Pesquisando contéudo..." });
 		let page;
