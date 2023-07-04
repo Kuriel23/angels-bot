@@ -24,6 +24,12 @@ const UserSchema = new Schema({
 			money: { type: Number, required: true },
 		},
 	],
+	warns: [
+		{
+			reason: String,
+			by: String,
+		}
+	]
 });
 
 const PartnersStaffSchema = new Schema({
