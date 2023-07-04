@@ -1,13 +1,13 @@
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v10");
-const { readdirSync } = require("fs");
-require("dotenv").config();
-const { ChalkAdvanced } = require("chalk-advanced");
-const schedule = require("node-schedule");
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v10');
+const { readdirSync } = require('fs');
+require('dotenv').config();
+const { ChalkAdvanced } = require('chalk-advanced');
+const schedule = require('node-schedule');
 
-module.exports = async (client) => {
-	const commandFiles = readdirSync("./src/commands/").filter((file) =>
-		file.endsWith(".js")
+module.exports = async client => {
+	const commandFiles = readdirSync('./src/commands/').filter(file =>
+		file.endsWith('.js'),
 	);
 
 	const commands = [];
@@ -19,36 +19,36 @@ module.exports = async (client) => {
 	}
 
 	const rest = new REST({
-		version: "10",
+		version: '10',
 	}).setToken(process.env.TOKEN);
 
 	(async () => {
 		try {
-			if (process.env.STATUS === "PRODUCTION") {
+			if (process.env.STATUS === 'PRODUCTION') {
 				// If the bot is in production mode it will load slash commands for all guilds
 				await rest.put(Routes.applicationCommands(client.user.id), {
 					body: commands,
 				});
 				console.log(
-					`${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green(
-						"Sucesso registrado comandos globalmente"
-					)}`
+					`${ChalkAdvanced.gray('>')} ${ChalkAdvanced.green(
+						'Sucesso registrado comandos globalmente',
+					)}`,
 				);
 			} else {
 				await rest.put(
 					Routes.applicationGuildCommands(
 						client.user.id,
-						process.env.GUILD_ID
+						process.env.GUILD_ID,
 					),
 					{
 						body: commands,
-					}
+					},
 				);
 
 				console.log(
-					`${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green(
-						"Sucesso registrado comandos localmente"
-					)}`
+					`${ChalkAdvanced.gray('>')} ${ChalkAdvanced.green(
+						'Sucesso registrado comandos localmente',
+					)}`,
 				);
 			}
 		} catch (err) {
@@ -57,9 +57,12 @@ module.exports = async (client) => {
 	})();
 	client.user.setPresence({
 		activities: [{ name: `Lute pelo que ama.`, type: 0 }],
-		status: "dnd",
+		status: 'dnd',
 	});
-	schedule.scheduleJob("0 0 * * 1", async function () {
+	schedule.scheduleJob('0 0 * * 1', async function () {
 		await client.db.PartnersStaff.deleteMany({});
+	});
+	schedule.scheduleJob('0 0 1 * *', async function () {
+		await client.db.Users.updateMany({}, { $set: { warns: [] } });
 	});
 };
