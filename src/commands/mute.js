@@ -51,23 +51,6 @@ module.exports = {
           content: "É impossível realizar tal ação contra este usuário.",
         });
     });
-    const embban = new discord.EmbedBuilder()
-      .setTitle(member.user.tag + " | Mute")
-      .setColor(client.cor)
-      .addFields(
-        {
-          name: "Usuário",
-          value: `${member.user.tag} (${member.id})`,
-          inline: true,
-        },
-        {
-          name: "Moderador",
-          value: `${interaction.member.tag} (${interaction.member.id})`,
-          inline: true,
-        },
-        { name: "Tempo", value: ms(time, { long: true }), inline: true }
-      );
-    client.channels.cache.get("944721146971033650").send({ embeds: [embban] });
     return interaction.reply({
       content: `${member} foi mutado por ${ms(time, { long: true })}`,
     });
