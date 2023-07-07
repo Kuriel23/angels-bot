@@ -31,7 +31,7 @@ module.exports = {
 				)
 				.setDescription(
 					`${doc.warns
-						.map((warn, index) => {
+						.map((warn) => {
 							return `${warn.reason} | por <@${warn.by}>`;
 						})
 						.join('\n')}`,
