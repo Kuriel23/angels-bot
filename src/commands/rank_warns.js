@@ -16,7 +16,7 @@ module.exports = {
 		await Search(1);
 		async function Search(pagina) {
 			const partners = await client.db.Users.paginate(
-				{},
+				{ warns: { $ne: [] } },
 				{ page: pagina, limit: 15, sort: { warns: -1 } },
 			).catch(err => {
 				if (err)
