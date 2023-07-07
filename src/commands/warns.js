@@ -27,12 +27,12 @@ module.exports = {
 			const emb = new discord.EmbedBuilder()
 				.setColor(client.cor)
 				.setTitle(
-					`Advertências de ${member.username} (${doc.warns.length})`,
+					`Advertências de ${member.tag} (${doc.warns.length})`,
 				)
 				.setDescription(
 					`${doc.warns
-						.map((by, reason) => {
-							return `${reason} | por <@${by}>`;
+						.map((warn, index) => {
+							return `${warn.reason} | por <@${warn.by}>`;
 						})
 						.join('\n')}`,
 				);
