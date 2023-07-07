@@ -46,7 +46,7 @@ module.exports = {
 			}
 			if (warnsQt === 1) Mute(3600000);
 			if (warnsQt >= 2 && warnsQt <= 5) Mute(10800000);
-			else if (warnsQt >= 5) Mute(10800000);
+			else if (warnsQt >= 5) Mute(86400000);
 			member
 				.send({
 					content:
