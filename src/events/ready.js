@@ -56,7 +56,7 @@ module.exports = async client => {
 		}
 	})();
 	client.user.setPresence({
-		activities: [{ name: `Lute pelo que ama.`, type: 0 }],
+		activities: [{ name: `Lute pelo que ama.`, type: 4 }],
 		status: 'dnd',
 	});
 	schedule.scheduleJob('0 0 * * 1', async function () {
