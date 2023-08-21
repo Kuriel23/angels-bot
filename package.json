@@ -5,24 +5,24 @@
     "start": "node ."
   },
   "dependencies": {
-    "@discordjs/rest": "^2.0.0",
+    "@discordjs/rest": "^2.0.1",
     "chalk-advanced": "^1.0.3",
-    "discord-api-types": "^0.37.51",
-    "discord.js": "^14.12.1",
+    "discord-api-types": "^0.37.54",
+    "discord.js": "^14.13.0",
     "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
-    "mongoose": "^7.4.2",
+    "mongoose": "^7.4.3",
     "mongoose-paginate-v2": "^1.7.31",
     "ms-pt-br": "^2.1.4",
     "node-schedule": "^2.1.1",
     "parse-ms-2": "^1.0.0",
-    "superagent": "^8.0.3"
+    "superagent": "^8.1.2"
   },
   "devDependencies": {
-    "eslint": "^8.46.0",
+    "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-semistandard": "^17.0.0",
-    "prettier": "^3.0.1"
+    "prettier": "^3.0.2"
   },
   "name": "angels",
   "version": "1.0.0",
