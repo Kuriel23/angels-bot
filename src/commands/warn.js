@@ -44,9 +44,18 @@ module.exports = {
 						});
 				});
 			}
-			if (warnsQt === 1) Mute(3600000);
-			if (warnsQt >= 2 && warnsQt <= 5) Mute(10800000);
-			else if (warnsQt >= 5) Mute(86400000);
+			if (warnsQt === 1) Mute(1800000);
+			if (warnsQt === 2) Mute(7200000);
+			if (warnsQt === 3) Mute(86400000);
+			else if (warnsQt >= 4)
+				interaction.guild.bans
+					.create(member.id, {
+						reason,
+						deleteMessageSeconds: 1 * 24 * 60 * 60,
+					})
+					.catch(err => {
+						return interaction.reply(`Erro: ${err}`);
+					});
 			member
 				.send({
 					content:
