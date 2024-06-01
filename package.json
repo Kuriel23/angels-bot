@@ -10,7 +10,6 @@
     "discord-api-types": "^0.37.70",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
-    "fs": "^0.0.1-security",
     "mongoose": "^8.2.0",
     "mongoose-paginate-v2": "^1.8.0",
     "ms-pt-br": "^2.1.4",

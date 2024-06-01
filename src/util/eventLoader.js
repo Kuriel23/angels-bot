@@ -1,4 +1,4 @@
-const { readdir } = require("fs");
+const { readdir } = require("node:fs");
 
 module.exports = async (client) => {
   readdir("./src/events/", (err, files) => {
