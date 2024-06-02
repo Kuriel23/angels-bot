@@ -29,8 +29,8 @@ module.exports = {
 				respostas.length === 1
 					? 0
 					: resultadoAleatorio === 0
-					? resultadoAleatorio + 1
-					: resultadoAleatorio - 1
+						? resultadoAleatorio + 1
+						: resultadoAleatorio - 1
 			];
 
 		const doc = await client.db.Users.findOne({
@@ -42,7 +42,7 @@ module.exports = {
 				const _time = ms(delayTime - (Date.now() - doc.roubarCooldown));
 				const embed = new discord.EmbedBuilder()
 					.setTitle(
-						`Espere: ${_time.hours}h, ${_time.minutes}m, e ${_time.seconds}s para fazer roubos.`
+						`Espere: ${_time.hours}h, ${_time.minutes}m, e ${_time.seconds}s para fazer roubos.`,
 					)
 					.setColor(client.cor);
 				return interaction.reply({ embeds: [embed] });
@@ -54,8 +54,7 @@ module.exports = {
 						.setColor(client.cor);
 				}
 				if (result === "Restaurante") {
-					const restaurante =
-						Math.floor(Math.random() * (5000 - 3000)) + 3000;
+					const restaurante = Math.floor(Math.random() * (5000 - 3000)) + 3000;
 					doc.coins += restaurante;
 					doc.roubarCooldown = Date.now();
 					doc.save();
@@ -63,16 +62,15 @@ module.exports = {
 						interaction.member.id,
 						restaurante,
 						true,
-						`Executou roubo`
+						"Executou roubo",
 					);
 					const restauranteemb = embed(
-						`Você foi em um restaurante, obtendo ${restaurante} moedas no roubo, além disso você aproveitou para comer.`
+						`Você foi em um restaurante, obtendo ${restaurante} moedas no roubo, além disso você aproveitou para comer.`,
 					);
 					interaction.reply({ embeds: [restauranteemb] });
 				}
 				if (result === "The King Shop") {
-					const theking =
-						Math.floor(Math.random() * (2000 - 1000)) + 1000;
+					const theking = Math.floor(Math.random() * (2000 - 1000)) + 1000;
 					doc.coins += theking;
 					doc.roubarCooldown = Date.now();
 					doc.save();
@@ -80,16 +78,15 @@ module.exports = {
 						interaction.member.id,
 						theking,
 						true,
-						`Executou roubo`
+						"Executou roubo",
 					);
 					const thekingshop = embed(
-						`Você foi para o The King Shop, obtendo ${theking} moedas no roubo.`
+						`Você foi para o The King Shop, obtendo ${theking} moedas no roubo.`,
 					);
 					interaction.reply({ embeds: [thekingshop] });
 				}
 				if (result === "Banco") {
-					const banco =
-						Math.floor(Math.random() * (10000 - 5000)) + 5000;
+					const banco = Math.floor(Math.random() * (10000 - 5000)) + 5000;
 					doc.coins += banco;
 					doc.roubarCooldown = Date.now();
 					doc.save();
@@ -97,16 +94,15 @@ module.exports = {
 						interaction.member.id,
 						banco,
 						true,
-						`Executou roubo`
+						"Executou roubo",
 					);
 					const bancoemb = embed(
-						`Você foi para o banco, obtendo ${banco} moedas no roubo.`
+						`Você foi para o banco, obtendo ${banco} moedas no roubo.`,
 					);
 					interaction.reply({ embeds: [bancoemb] });
 				}
 				if (result === "Supermercado") {
-					const supermercado =
-						Math.floor(Math.random() * (1000 - 0)) + 1;
+					const supermercado = Math.floor(Math.random() * (1000 - 0)) + 1;
 					doc.coins += supermercado;
 					doc.roubarCooldown = Date.now();
 					doc.save();
@@ -114,10 +110,10 @@ module.exports = {
 						interaction.member.id,
 						supermercado,
 						true,
-						`Executou roubo`
+						"Executou roubo",
 					);
 					const supermercadoemb = embed(
-						`Você foi para o supermercado, obtendo ${supermercado} moedas no roubo.`
+						`Você foi para o supermercado, obtendo ${supermercado} moedas no roubo.`,
 					);
 					interaction.reply({ embeds: [supermercadoemb] });
 				}
@@ -130,16 +126,15 @@ module.exports = {
 						interaction.member.id,
 						farmacia,
 						true,
-						`Executou roubo`
+						"Executou roubo",
 					);
 					const farmaciaemb = embed(
-						`Você foi para a farmácia, obtendo ${farmacia} moedas no roubo.`
+						`Você foi para a farmácia, obtendo ${farmacia} moedas no roubo.`,
 					);
 					interaction.reply({ embeds: [farmaciaemb] });
 				}
 				if (result === "Joalheria") {
-					const joalheria =
-						Math.floor(Math.random() * (5000 - 1000)) + 1;
+					const joalheria = Math.floor(Math.random() * (5000 - 1000)) + 1;
 					doc.coins += joalheria;
 					doc.roubarCooldown = Date.now();
 					doc.save();
@@ -147,10 +142,10 @@ module.exports = {
 						interaction.member.id,
 						joalheria,
 						true,
-						`Executou roubo`
+						"Executou roubo",
 					);
 					const joalheriaemb = embed(
-						`Você foi para a joalheria, obtendo ${joalheria} moedas no roubo.`
+						`Você foi para a joalheria, obtendo ${joalheria} moedas no roubo.`,
 					);
 					interaction.reply({ embeds: [joalheriaemb] });
 				}
@@ -164,10 +159,10 @@ module.exports = {
 						interaction.member.id,
 						tecnologialoja,
 						true,
-						`Executou roubo`
+						"Executou roubo",
 					);
 					const loja = embed(
-						`Você foi para a loja de tecnologia, obtendo ${tecnologialoja} moedas no roubo.`
+						`Você foi para a loja de tecnologia, obtendo ${tecnologialoja} moedas no roubo.`,
 					);
 					interaction.reply({ embeds: [loja] });
 				} else if (
@@ -181,12 +176,12 @@ module.exports = {
 					doc.save();
 					if (result === "Kuriel") {
 						embedfalhado = embed(
-							"Você tentou roubar o kuriel, mas ele te deu um banzão."
+							"Você tentou roubar o kuriel, mas ele te deu um banzão.",
 						);
 					}
 					if (result === "Escola") {
 						embedfalhado = embed(
-							"Porquê tu foi tentar roubar uma escola? O governo sempre coloca PIN em tudo caso não esteja na escola."
+							"Porquê tu foi tentar roubar uma escola? O governo sempre coloca PIN em tudo caso não esteja na escola.",
 						);
 					}
 					if (result === "Prisão") {
@@ -194,7 +189,7 @@ module.exports = {
 					}
 					if (result === "Petshop") {
 						embedfalhado = embed(
-							"Você roubou um pet no petshop. Infelizmente, você é um péssimo ladrão já que você não aguentou a fofura."
+							"Você roubou um pet no petshop. Infelizmente, você é um péssimo ladrão já que você não aguentou a fofura.",
 						);
 					}
 					interaction.reply({ embeds: [embedfalhado] });

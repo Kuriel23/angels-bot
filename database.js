@@ -1,13 +1,13 @@
-const { connect, Schema, model, set } = require('mongoose');
-const paginate = require('mongoose-paginate-v2');
+const { connect, Schema, model, set } = require("mongoose");
+const paginate = require("mongoose-paginate-v2");
 
 connect(process.env.DB, {})
-	.then(() => console.log('[BANCO DE DADOS] | Carregado com sucesso'))
+	.then(() => console.log("[BANCO DE DADOS] | Carregado com sucesso"))
 	.catch(() =>
-		console.log('[ERRO] | Não foi possível se conectar ao banco de dados.'),
+		console.log("[ERRO] | Não foi possível se conectar ao banco de dados."),
 	);
 
-set('strictQuery', true);
+set("strictQuery", true);
 
 const UserSchema = new Schema({
 	_id: { type: String, required: true },
@@ -39,5 +39,5 @@ const PartnersStaffSchema = new Schema({
 });
 PartnersStaffSchema.plugin(paginate);
 
-module.exports.PartnersStaff = model('PartnersStaff', PartnersStaffSchema);
-module.exports.Users = model('Users', UserSchema);
+module.exports.PartnersStaff = model("PartnersStaff", PartnersStaffSchema);
+module.exports.Users = model("Users", UserSchema);

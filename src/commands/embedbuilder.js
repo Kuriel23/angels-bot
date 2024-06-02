@@ -8,12 +8,12 @@ module.exports = {
 			option
 				.setName("json")
 				.setDescription("Pegue isto em JSON Data Editor do Discohook")
-				.setRequired(true)
+				.setRequired(true),
 		),
 	async execute(interaction, client) {
 		const embed = JSON.parse(interaction.options.getString("json"));
 		interaction.reply({
-			content: `Sucesso.`,
+			content: "Sucesso.",
 			ephemeral: true,
 		});
 		interaction.channel.send(embed);

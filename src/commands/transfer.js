@@ -13,7 +13,7 @@ module.exports = {
 				.setName("membro")
 				.setNameLocalizations({ "pt-BR": "membro", "en-US": "user" })
 				.setDescription("Identifique o membro")
-				.setRequired(true)
+				.setRequired(true),
 		)
 		.addIntegerOption((option) =>
 			option
@@ -21,7 +21,7 @@ module.exports = {
 				.setNameLocalizations({ "pt-BR": "dinheiro", "en-US": "money" })
 				.setDescription("Identifique o dinheiro a ser transferido")
 				.setRequired(true)
-				.setMinValue(1)
+				.setMinValue(1),
 		),
 	async execute(interaction, client) {
 		const transferido = interaction.options.getMember("membro");
@@ -52,7 +52,7 @@ module.exports = {
 				interaction.member.id,
 				dinheiro2,
 				false,
-				`Dinheiro transferido para ${transferido.user.tag}`
+				`Dinheiro transferido para ${transferido.user.tag}`,
 			);
 			interaction.reply({
 				content: `${transferido.toString()} você ganhou ${dinheiro2} moedas de ${interaction.user.toString()}.`,
@@ -73,7 +73,7 @@ module.exports = {
 				transferido.id,
 				dinheiro2,
 				true,
-				`Dinheiro transferido de ${interaction.member.user.tag}`
+				`Dinheiro transferido de ${interaction.member.user.tag}`,
 			);
 		}
 	},

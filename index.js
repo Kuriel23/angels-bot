@@ -8,8 +8,7 @@ const client = new discord.Client({
 			sweepInterval: 300,
 			sweepFilter: discord.Sweepers.filterByLifetime({
 				lifetime: 60,
-				getComparisonTimestamp: (m) =>
-					m.editedTimestamp ?? m.createdTimestamp,
+				getComparisonTimestamp: (m) => m.editedTimestamp ?? m.createdTimestamp,
 			}),
 		},
 	},
@@ -53,13 +52,13 @@ process.on("unhandledRejection", (error) => {
 	console.log(error);
 	client.channels.cache
 		.get(client.canais.errors)
-		.send("Erro detectado: \n" + error);
+		.send(`Erro detectado: \n${error}`);
 });
 process.on("uncaughtException", (error) => {
 	console.log(error);
 	client.channels.cache
 		.get(client.canais.errors)
-		.send("Erro detectado: \n" + error);
+		.send(`Erro detectado: \n${error}`);
 });
 
 const boilerplateComponents = async () => {

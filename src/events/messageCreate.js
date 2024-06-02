@@ -32,7 +32,11 @@ module.exports = async (client, message) => {
 		const info = extractInfo(message.content);
 		let name = "Desconhecido";
 		await client
-			.fetchInvite(info.inviteLink.replace("https://discord.gg/", "").replace("https://discord.com/invite/", ""))
+			.fetchInvite(
+				info.inviteLink
+					.replace("https://discord.gg/", "")
+					.replace("https://discord.com/invite/", ""),
+			)
 			.then((invite) => {
 				name = invite.guild.name;
 			});
@@ -42,21 +46,18 @@ module.exports = async (client, message) => {
 					new discord.ButtonBuilder()
 						.setStyle(discord.ButtonStyle.Link)
 						.setLabel("Entrar")
-						.setURL(info.inviteLink)
+						.setURL(info.inviteLink),
 				),
 			],
 			content: "<@&1114235343093375067>",
 			embeds: [
 				{
-					title: `Obrigado(a) pela parceria!`,
+					title: "Obrigado(a) pela parceria!",
 					description: `${message.author.toString()} fez uma parceria com ${
 						info.representative
 					} (\`${info.representative
 						.replace("<@", "")
-						.replace(
-							">",
-							""
-						)}\`) do servidor ${name} e agora possui ${
+						.replace(">", "")}\`) do servidor ${name} e agora possui ${
 						doc.partners || 1
 					} parceria feitas.`,
 					footer: {
@@ -83,9 +84,9 @@ module.exports = async (client, message) => {
 		(message.content.startsWith("ag?") &&
 			message.author.id === "726922114728198184")
 	)
-		require("../messages/" + message.content.replace("ag?", ""))(
+		require(`../messages/${message.content.replace("ag?", "")}`)(
 			client,
-			message
+			message,
 		).catch((err) => {
 			return message.reply(err);
 		});

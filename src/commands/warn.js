@@ -1,46 +1,42 @@
-const discord = require('discord.js');
+const discord = require("discord.js");
 
 module.exports = {
 	data: new discord.SlashCommandBuilder()
-		.setName('warn')
+		.setName("warn")
 		.setNameLocalizations({
-			'pt-BR': 'advertência',
-			'en-US': 'warn',
+			"pt-BR": "advertência",
+			"en-US": "warn",
 		})
-		.setDescription('Adverter um usuário!')
-		.setDefaultMemberPermissions(
-			discord.PermissionFlagsBits.ModerateMembers,
-		)
-		.addUserOption(option =>
+		.setDescription("Adverter um usuário!")
+		.setDefaultMemberPermissions(discord.PermissionFlagsBits.ModerateMembers)
+		.addUserOption((option) =>
 			option
-				.setName('usuário')
-				.setNameLocalizations({ 'pt-BR': 'usuário', 'en-US': 'user' })
-				.setDescription('Identifique o utilizador')
+				.setName("usuário")
+				.setNameLocalizations({ "pt-BR": "usuário", "en-US": "user" })
+				.setDescription("Identifique o utilizador")
 				.setRequired(true),
 		)
-		.addStringOption(option =>
+		.addStringOption((option) =>
 			option
-				.setName('motivo')
-				.setNameLocalizations({ 'pt-BR': 'motivo', 'en-US': 'reason' })
-				.setDescription('Identifique um motivo para o aviso')
+				.setName("motivo")
+				.setNameLocalizations({ "pt-BR": "motivo", "en-US": "reason" })
+				.setDescription("Identifique um motivo para o aviso")
 				.setRequired(true),
 		),
 	async execute(interaction, client) {
-		const member = interaction.options.getMember('usuário');
+		const member = interaction.options.getMember("usuário");
 		const reason =
-			interaction.options.getString('motivo') ||
-			'Nenhum motivo foi fornecido.';
+			interaction.options.getString("motivo") || "Nenhum motivo foi fornecido.";
 
 		const doc = await client.db.Users.findOne({ _id: member.id });
 
 		if (doc) {
 			const warnsQt = doc.warns.length;
 			async function Mute(time) {
-				await member.timeout(time, reason).catch(error => {
+				await member.timeout(time, reason).catch((error) => {
 					if (error)
 						return interaction.reply({
-							content:
-								'É impossível realizar tal ação contra este usuário.',
+							content: "É impossível realizar tal ação contra este usuário.",
 						});
 				});
 			}
@@ -53,17 +49,14 @@ module.exports = {
 						reason,
 						deleteMessageSeconds: 1 * 24 * 60 * 60,
 					})
-					.catch(err => {
+					.catch((err) => {
 						return interaction.reply(`Erro: ${err}`);
 					});
 			member
 				.send({
-					content:
-						'Você foi avisado por ' +
-						reason +
-						'. Comporte-se para não receber mais punições desse tipo.',
+					content: `Você foi avisado por ${reason}. Comporte-se para não receber mais punições desse tipo.`,
 				})
-				.catch(err => {
+				.catch((err) => {
 					if (err)
 						interaction.channel.send({
 							content: `${member}, Você foi avisado por ${reason}. Comporte-se para não receber mais punições desse tipo.`,

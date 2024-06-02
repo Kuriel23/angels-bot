@@ -1,40 +1,36 @@
-const discord = require('discord.js');
+const discord = require("discord.js");
 
 module.exports = {
 	data: new discord.SlashCommandBuilder()
-		.setName('warns')
+		.setName("warns")
 		.setNameLocalizations({
-			'pt-BR': 'advertências',
-			'en-US': 'warns',
+			"pt-BR": "advertências",
+			"en-US": "warns",
 		})
-		.setDescription('Veja as advertências de um usuário!')
-		.setDefaultMemberPermissions(
-			discord.PermissionFlagsBits.ModerateMembers,
-		)
-		.addUserOption(option =>
+		.setDescription("Veja as advertências de um usuário!")
+		.setDefaultMemberPermissions(discord.PermissionFlagsBits.ModerateMembers)
+		.addUserOption((option) =>
 			option
-				.setName('usuário')
-				.setNameLocalizations({ 'pt-BR': 'usuário', 'en-US': 'user' })
-				.setDescription('Identifique o utilizador')
+				.setName("usuário")
+				.setNameLocalizations({ "pt-BR": "usuário", "en-US": "user" })
+				.setDescription("Identifique o utilizador")
 				.setRequired(true),
 		),
 	async execute(interaction, client) {
-		const member = interaction.options.getMember('usuário');
+		const member = interaction.options.getMember("usuário");
 
 		const doc = await client.db.Users.findOne({ _id: member.id });
 
 		if (doc) {
 			const emb = new discord.EmbedBuilder()
 				.setColor(client.cor)
-				.setTitle(
-					`Advertências de ${member.tag} (${doc.warns.length})`,
-				)
+				.setTitle(`Advertências de ${member.tag} (${doc.warns.length})`)
 				.setDescription(
 					`${doc.warns
 						.map((warn) => {
 							return `${warn.reason} | por <@${warn.by}>`;
 						})
-						.join('\n')}`,
+						.join("\n")}`,
 				);
 			return interaction.reply({ embeds: [emb] });
 		}
@@ -42,7 +38,7 @@ module.exports = {
 			_id: member.id,
 		}).save();
 		return interaction.reply({
-			content: 'Este usuário não tem advertências salvas.',
+			content: "Este usuário não tem advertências salvas.",
 		});
 	},
 };

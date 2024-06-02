@@ -1,9 +1,7 @@
 module.exports = (client, interaction) => {
 	if (interaction.isStringSelectMenu()) {
 		if (/^\d{19}$/.test(interaction.values[0])) {
-			const role = interaction.guild.roles.cache.get(
-				interaction.values[0]
-			);
+			const role = interaction.guild.roles.cache.get(interaction.values[0]);
 			if (interaction.member.roles.cache.has(role.id)) {
 				interaction.member.roles.remove(role);
 				interaction.reply({
@@ -18,7 +16,7 @@ module.exports = (client, interaction) => {
 				interaction.member.roles.add(role);
 			}
 		} else {
-			require("../menu/" + interaction.customId)(client, interaction);
+			require(`../menu/${interaction.customId}`)(client, interaction);
 		}
 	}
 	if (interaction.isButton()) {
@@ -38,7 +36,7 @@ module.exports = (client, interaction) => {
 		if (interaction.customId.startsWith("tapa"))
 			return require("../button/slap")(client, interaction);
 		try {
-			require("../button/" + interaction.customId)(client, interaction);
+			require(`../button/${interaction.customId}`)(client, interaction);
 		} catch (error) {
 			return 0;
 		}

@@ -13,7 +13,7 @@ module.exports = {
 				.setName("usuário")
 				.setNameLocalizations({ "pt-BR": "usuário", "en-US": "user" })
 				.setDescription("Identifique o utilizador")
-				.setRequired(false)
+				.setRequired(false),
 		),
 	async execute(interaction, client) {
 		const membro =

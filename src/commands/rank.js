@@ -17,7 +17,7 @@ module.exports = {
 		async function Search(pagina) {
 			const partners = await client.db.PartnersStaff.paginate(
 				{},
-				{ page: pagina, limit: 15, sort: { partners: -1 } }
+				{ page: pagina, limit: 15, sort: { partners: -1 } },
 			).catch((err) => {
 				if (err)
 					return interaction.editReply({
@@ -29,12 +29,12 @@ module.exports = {
 			const str2 = Math.floor(Math.random() * 100);
 			buttonname = str2;
 			const antes = new discord.ButtonBuilder()
-				.setCustomId(str2 + "prev")
+				.setCustomId(`${str2}prev`)
 				.setEmoji("1065370746303553587")
 				.setStyle(2)
 				.setDisabled(!partners.hasPrevPage);
 			const depois = new discord.ButtonBuilder()
-				.setCustomId(str2 + "next")
+				.setCustomId(`${str2}next`)
 				.setEmoji("1065370743526916096")
 				.setStyle(2)
 				.setDisabled(!partners.hasNextPage);
@@ -51,13 +51,10 @@ module.exports = {
 				const fields = partners.docs.map((w, index) => ({
 					name: `${partners.pagingCounter + index}. ${
 						interaction.guild.members.cache.get(w._id)
-							? interaction.guild.members.cache.get(w._id).user
-									.username
+							? interaction.guild.members.cache.get(w._id).user.username
 							: w._id
 					}`,
-					value: `┗ **Parcerias**: ${w.partners.toLocaleString(
-						"pt-BR"
-					)}`,
+					value: `┗ **Parcerias**: ${w.partners.toLocaleString("pt-BR")}`,
 					inline: true,
 				}));
 
@@ -69,8 +66,8 @@ module.exports = {
 				components: [botao],
 			});
 			const filter = (interaction) =>
-				interaction.customId === buttonname + "next" ||
-				interaction.customId === buttonname + "prev";
+				interaction.customId === `${buttonname}next` ||
+				interaction.customId === `${buttonname}prev`;
 			collector = mensagem.createMessageComponentCollector({
 				filter,
 				time: 300000,
@@ -78,11 +75,11 @@ module.exports = {
 		}
 		collector.on("collect", (i) => {
 			if (i.user.id === interaction.member.id) {
-				if (i.customId === buttonname + "next") {
+				if (i.customId === `${buttonname}next`) {
 					i.deferUpdate();
 					Search(page + 1);
 				}
-				if (i.customId === buttonname + "prev") {
+				if (i.customId === `${buttonname}prev`) {
 					i.deferUpdate();
 					Search(page - 1);
 				}

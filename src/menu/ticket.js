@@ -7,11 +7,11 @@ module.exports = async (client, interaction) => {
 		case "suporte":
 			if (
 				interaction.guild.channels.cache.find(
-					(c) => c.name === `${tagger}-suporte`
+					(c) => c.name === `${tagger}-suporte`,
 				)
 			) {
 				const c = interaction.guild.channels.cache.find(
-					(c) => c.name === `${tagger}-suporte`
+					(c) => c.name === `${tagger}-suporte`,
 				);
 				interaction.reply({
 					content: `Você já possui um ticket aberto em ${c}.`,
@@ -63,17 +63,16 @@ module.exports = async (client, interaction) => {
 							})
 							.setColor(client.cor)
 							.setDescription(
-								`Olá, ${interaction.user.username}, boas vindas ao seu ticket!\nAguarde alguns instantes para receber ajuda.`
+								`Olá, ${interaction.user.username}, boas vindas ao seu ticket!\nAguarde alguns instantes para receber ajuda.`,
 							);
 
-						const botao =
-							new discord.ActionRowBuilder().addComponents(
-								new discord.ButtonBuilder()
-									.setCustomId("closeTicket")
-									.setEmoji("🔒")
-									.setLabel("Fechar Ticket")
-									.setStyle(2)
-							);
+						const botao = new discord.ActionRowBuilder().addComponents(
+							new discord.ButtonBuilder()
+								.setCustomId("closeTicket")
+								.setEmoji("🔒")
+								.setLabel("Fechar Ticket")
+								.setStyle(2),
+						);
 
 						c.send({
 							content: "<@&1113955520265584660>",
@@ -85,12 +84,10 @@ module.exports = async (client, interaction) => {
 			break;
 		case "vip":
 			if (
-				interaction.guild.channels.cache.find(
-					(c) => c.name === `${tagger}-vip`
-				)
+				interaction.guild.channels.cache.find((c) => c.name === `${tagger}-vip`)
 			) {
 				const c = interaction.guild.channels.cache.find(
-					(c) => c.name === `${tagger}-vip`
+					(c) => c.name === `${tagger}-vip`,
 				);
 				interaction.reply({
 					content: `Você já possui um ticket aberto em ${c}.`,
@@ -142,17 +139,16 @@ module.exports = async (client, interaction) => {
 							})
 							.setColor(client.cor)
 							.setDescription(
-								`Olá, ${interaction.user.username}, boas vindas ao seu ticket!\nAguarde alguns instantes para receber uma resposta da nossa equipe.`
+								`Olá, ${interaction.user.username}, boas vindas ao seu ticket!\nAguarde alguns instantes para receber uma resposta da nossa equipe.`,
 							);
 
-						const botao =
-							new discord.ActionRowBuilder().addComponents(
-								new discord.ButtonBuilder()
-									.setCustomId("closeTicket")
-									.setEmoji("🔒")
-									.setLabel("Fechar Ticket")
-									.setStyle(2)
-							);
+						const botao = new discord.ActionRowBuilder().addComponents(
+							new discord.ButtonBuilder()
+								.setCustomId("closeTicket")
+								.setEmoji("🔒")
+								.setLabel("Fechar Ticket")
+								.setStyle(2),
+						);
 
 						c.send({
 							content: "<@&1113955520265584660>",

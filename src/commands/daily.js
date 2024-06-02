@@ -20,21 +20,20 @@ module.exports = {
 				const _time = ms(delayTime - (Date.now() - doc.dailyCooldown));
 				const emb = new discord.EmbedBuilder()
 					.setTitle(
-						`Espere: ${_time.hours}h, ${_time.minutes}m, e ${_time.seconds}s para coletar a sua bufunfa diária.`
+						`Espere: ${_time.hours}h, ${_time.minutes}m, e ${_time.seconds}s para coletar a sua bufunfa diária.`,
 					)
 					.setColor(client.cor);
 				return interaction.reply({ embeds: [emb] });
-			} else {
-				doc.coins += money;
-				doc.dailyCooldown = Date.now();
-				doc.save();
-				client.newTransaction(
-					interaction.member.id,
-					money,
-					true,
-					`Executou daily`
-				);
 			}
+			doc.coins += money;
+			doc.dailyCooldown = Date.now();
+			doc.save();
+			client.newTransaction(
+				interaction.member.id,
+				money,
+				true,
+				"Executou daily",
+			);
 		} else {
 			new client.db.Users({
 				_id: interaction.member.id,
